@@ -138,18 +138,24 @@ namespace MovieEditor.SoundEngines
         {
            if (MuteSound!=true  )
             {
-                OpenAudioLibrary.AlutInit();
+                try
+                {
+                    OpenAudioLibrary.AlutInit();
 
-                AudioListener.Position = new Vector3D(0, 0, 0);
-                AudioListener.Velocity = new Vector3D(0, 0, 0);
-                AudioListener.Orientation = new OpenALDotNet.Orientation(new Vector3D(0, 0, -1), new Vector3D(0, 1, 0));
+                    AudioListener.Position = new Vector3D(0, 0, 0);
+                    AudioListener.Velocity = new Vector3D(0, 0, 0);
+                    AudioListener.Orientation = new OpenALDotNet.Orientation(new Vector3D(0, 0, -1), new Vector3D(0, 1, 0));
 
-                source = new AudioSource();
-                
-                source.IsRelative = true;
-                source.Position = new Vector3D(1, 0, 0);
-                source.Velocity = new Vector3D(0, 0, 0);
-                source.Gain = .5f;
+                    source = new AudioSource();
+
+                    source.IsRelative = true;
+                    source.Position = new Vector3D(1, 0, 0);
+                    source.Velocity = new Vector3D(0, 0, 0);
+                    source.Gain = .5f;
+                }
+                catch {
+                //alut library is dead now,  just eat the error
+                }
             }
         }
 

@@ -95,23 +95,10 @@ namespace MovieEditor
             DockPanel.SuspendLayout(true);
 
             //todo: load the configfile dependant on the user so each person gets their own look and feel
-            if (System.IO.File.Exists(GraphconfigFile))
-            {
-                try
-                {
-                    DockPanel.LoadFromXml(GraphconfigFile, ReloadContent);
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.Print(ex.Message);
-                    CreateBasicLayout();
-                }
-            }
-            else
-            {
+            
                 // Load a basic layout
                 CreateBasicLayout();
-            }
+           
 
 
             DockPanel.ResumeLayout(true, true);

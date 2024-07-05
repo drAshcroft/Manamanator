@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="Current" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -15,7 +15,7 @@
     <ManifestCertificateThumbprint>CDEF50D4796FC41F87EE73E42EAF4B4BC2D5D0CB</ManifestCertificateThumbprint>
     <ManifestKeyFile>MovieEditor_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Documents and Settings\Administrator\Desktop\MovieEditor\Installer\</PublishUrl>
     <Install>true</Install>
@@ -32,6 +32,11 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,7 +66,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\DirectShowLib.dll</HintPath>
     </Reference>
+    <Reference Include="OpenALDotNet, Version=0.1.3465.40054, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\OpenALDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -77,6 +87,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VistaMenuControl, Version=1.0.3430.41315, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\VistaMenuControl.dll</HintPath>
+    </Reference>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.1.6643.41644, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WeifenLuo.WinFormsUI.Docking.2.1.0\lib\net20\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AVIFile\AudioStream.cs" />
@@ -236,12 +253,21 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <Content Include="dlls\AdvanceMath.dll" />
+    <Content Include="dlls\alut.dll" />
+    <Content Include="dlls\AvisynthWrapper.dll" />
+    <Content Include="dlls\DirectShowLib.dll" />
+    <Content Include="dlls\OpenALDotNet.dll" />
+    <Content Include="dlls\OpenALDotNet.pdb" />
+    <Content Include="dlls\Tao.OpenAl.dll" />
+    <Content Include="dlls\Tao.OpenAl.xml" />
     <Content Include="ffmpeg\COPYING.GPL">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="app.config" />
-    <None Include="MovieEditor_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -297,20 +323,6 @@
     <Compile Include="WaveWriter\WaveWriter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Docking Src\WinFormsUI\WinFormsUI.csproj">
-      <Project>{C75532C4-765B-418E-B09B-46D36B2ABDB1}</Project>
-      <Name>WinFormsUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OpenALDotNet-0.1.0.0\OpenALDotNet\OpenALDotNet.csproj">
-      <Project>{E2C16A99-B93E-4ED8-B1A5-DECED58CEBBD}</Project>
-      <Name>OpenALDotNet</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VistaMenu\VistaMenuControl\VistaMenuControl.csproj">
-      <Project>{BBCAE08C-006F-4979-9717-24532B432450}</Project>
-      <Name>VistaMenuControl</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="TimeLine\Tools\CutCursor.cur" />
   </ItemGroup>
   <ItemGroup>
@@ -361,10 +373,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="alut.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="AvisynthWrapper.dll" />
     <Content Include="ffmpeg\ffmpeg.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
